@@ -4,8 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    body {
+      background-color: #222;
+      text-align: center;
+    }
+    p {
+      margin-bottom: 5rem;
+      color: #fff !important;
+      font-size: 20px;
+    }
+
+    a {
+      color: white;
+    }
+
+    .anim-white {
+      width: 400px;
+      height: 5px;
+      margin: 0 auto;
+      background-color: #fff;
+    }
+    footer {
+      margin-top: 700px;
+    }
+  </style>
 </head>
+
 <body>
-  
+  <p><a href="javascript:void(0)" konimate-scroll="#footer">Go to footer</a></p>
+  <p konimate-type="fade">Animate fade</p>
+  <p konimate-type="fade-down">Animate fade down</p>
+  <p konimate-type="fade-up">Animate fade up</p>
+  <p konimate-type="fade-left">Animate fade left</p>
+  <p konimate-type="fade-right">Animate fade right</p>
+  <div class="anim-white" konimate-type="width"></div>
+
+  <footer id="footer">
+    <p>This is footer</p>
+    <a href="javascript:void(0)" konimate-scroll-top="true">To TOP</a>
+  </footer>
+  <script src="./konimate.js"></script>
 </body>
 </html>
