@@ -8,7 +8,7 @@ const ANIM_WIDTH = "width";
 const animateScrollElements = document.querySelectorAll(`[konimate-type]`);
 
 /** create init style before run animation */
-const createInitStyleScroll = (styleType, element) => {
+const createInitStyle = (styleType, element) => {
   switch(styleType) {
     case FADE: {
       element.style.opacity = 0;
@@ -44,7 +44,7 @@ const createInitStyleScroll = (styleType, element) => {
 }
 
 /** create first load animation */
-const animateScroll = (el) => {
+const animate = (el) => {
   el.setAttribute("konimate-show", true);
   const styleType = el.getAttribute("konimate-type");
   const delay = el.getAttribute("konimate-delay");
@@ -112,7 +112,7 @@ for(let el of animateScrollElements){
   const styleType = el.getAttribute("konimate-type");
   
   /** creating init style to all element */
-  createInitStyleScroll(styleType, el);
+  createInitStyle(styleType, el);
 
   elRects = [...elRects, {
     position: rectY,
@@ -158,23 +158,60 @@ const clickToTopAnimate = () => {
   })
 }
 
-window.onload = () => {
-  /** initialize load animation */
+/** handle animation on scroll */
+const konimateScrollHandler = () => {
   for(let rect of elRects) {
     if(rect.position < currentY){
-      animateScroll(rect.element);
+      const isScroll = !rect.element.hasAttribute("konimate-for");
+      if(isScroll) {
+        animate(rect.element);
+      }
     }
   }
+
   /** load animation on scroll */
   window.addEventListener(`scroll`, e => {
     let currHeight = currentY + window.scrollY;
     elRects.filter(v => v.position <= currHeight).forEach(v=> {
       const rect = v.element;
       if(!rect.hasAttribute("konimate-show")){
-        animateScroll(v.element);
+        const isScroll = !rect.hasAttribute("konimate-for");
+        if(isScroll) {
+          animate(rect);
+        }
       }
     });
   })
+}
+
+/** handle animation on click trigger */
+const konimateButtonHandler = () => {
+  const buttons = document.querySelectorAll(`[konimate-button]`);
+  buttons.forEach(v=>{
+    const type = v.getAttribute(`konimate-button`);
+    const id = v.getAttribute("id");
+    const target = document.querySelectorAll(`[konimate-for="#${id}"]`);
+    v.addEventListener("click", e => {
+      e.preventDefault();
+      target.forEach(v=> {
+        const vStyleType = v.getAttribute("konimate-type");
+        if(type == "show") {
+          animate(v);
+        }
+        else if(type == "hide"){
+          createInitStyle(vStyleType, v);
+        }
+      })     
+    })
+  })
+}
+
+window.onload = () => {
+  /** initialize load scroll animation */
+  konimateScrollHandler();
+
+  /** load animation onclick */
+  konimateButtonHandler();
 
   /** handle jump to content animation */
   jumpToAnimate();
