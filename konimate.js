@@ -4,6 +4,7 @@ const FADE_LEFT = "fade-left";
 const FADE_RIGHT = "fade-right";
 const FADE = "fade";
 const ANIM_WIDTH = "width";
+const ANIM_TYPING ="typing";
 
 const animateScrollElements = document.querySelectorAll(`[konimate-type]`);
 
@@ -39,6 +40,9 @@ const createInitStyle = (styleType, element) => {
       element.setAttribute("konimate-width", elWidth);
       element.style.width = "0";
       break;
+    }
+    case ANIM_TYPING: {
+      element.style.display = "none";
     }
   }
 }
@@ -99,6 +103,21 @@ const animate = (el) => {
       el.style.transition = `all .4s ease-in`;
       if(delay){
         el.style.transitionDelay = delay;
+      }
+      break;
+    }
+    case ANIM_TYPING: {
+      const text = el.innerText;
+      el.innerText = "";
+      el.style.display = "block";
+      let initDelay = 300
+      let delay = 50;
+      for(let i = 0; i < text.length; i++){
+        initDelay += delay
+        window.setTimeout(()=>{
+          el.innerHTML += text[i];
+        }, initDelay)
+        initDelay += delay;
       }
       break;
     }
