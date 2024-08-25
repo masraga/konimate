@@ -3,9 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="konimate.css" type="text/css" />
+  <title>konimate</title>
 </head>
+
 <body>
-  
+  <header>
+    <div class="container">
+      <div class="brand">
+        <a href="" class="text-primary size-title font-weight-500">KONIMATE</a>
+      </div>
+      <div class="menu">
+        <div><a href="" class="size-text">DOWNLOAD</a></div>
+        <div><a href="https://github.com/masraga/konimate" class="size-text">DOCUMENTATION</a></div>
+      </div>
+    </div>
+    <div konimate-type="typing" class="motto text-white text-center size-subtitle">Make elegant animation for your site with konimate.js</div>
+    <div class="documentation">
+      <div><a id="fade-up-button" konimate-button="show" href="javascript:void(0)">FADE UP</a></div> 
+      <div><a id="fade-down-button" konimate-button="show" href="javascript:void(0)">FADE DOWN</a></div> 
+      <div><a id="fade-right-button" konimate-button="show" href="javascript:void(0)">FADE RIGHT</a></div> 
+      <div><a id="fade-left-button" konimate-button="show" href="javascript:void(0)">FADE LEFT</a></div> 
+      <div><a id="typing-button" konimate-button="show" href="javascript:void(0)">TYPING ANIMATION</a></div> 
+      <div><a konimate-scroll="#footer" href="javascript:void(0)">SCROLL ANIMATION</a></div> 
+    </div>
+  </header>
+  <div class="result">
+    <div konimate-type="fade-up" konimate-for="#fade-up-button"></div>
+    <div konimate-type="fade-down" konimate-for="#fade-down-button"></div>
+    <div konimate-type="fade-right" konimate-for="#fade-right-button"></div>
+    <div konimate-type="fade-left" konimate-for="#fade-left-button"></div>
+    <div konimate-type="typing" konimate-for="#typing-button" class="typing">Lorem, ipsum dolor sit amet</div>
+  </div>
+  <footer id="footer">
+    <p>This is footer</p>
+    <a href="javascript:void(0)" konimate-scroll-top="true">To TOP</a>
+  </footer>
+  <script src="./konimate.js"></script>
 </body>
 </html>
