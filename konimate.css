@@ -74,7 +74,7 @@ body {
   margin-top: 40px;
 }
 .documentation>div{
-  margin: 10px;
+  margin: 20px 10px;
 }
 .documentation>div>a{
   border: 1px solid var(--yellow-700);
@@ -86,6 +86,7 @@ body {
 .result{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .result>div{
   width: 100px;
